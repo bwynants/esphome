@@ -87,7 +87,12 @@ async def to_code(config):
     cg.add_build_flag("-DDSMR_WATER_MBUS_ID=" + str(config[CONF_WATER_MBUS_ID]))
 
     # DSMR Parser
-    cg.add_library("glmnet/Dsmr", "0.8")
+    # https://community.platformio.org/t/how-do-i-use-my-own-gethub-branch-as-a-library/7505
+    cg.add_library(
+            name="arduino-dsmr",
+            repository="https://github.com/bwynants/arduino-dsmr.git#patch-1",
+            version="48b1dad8232ac0beb9ed5d0f9dba3d8d89659006"
+        )
 
     # Crypto
     cg.add_library("rweather/Crypto", "0.4.0")
